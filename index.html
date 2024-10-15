@@ -1,10 +1,51 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lost and Found system</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lost and Found System</title>
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+    <header>
+        <h1>Lost and Found system</h1>
+        <p>Post an item you've lost or found!</p>
+    </header>
     
+    <main>
+        <form id="itemForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <button type="button" id="lostButton" class="form-btn lost">Post Lost Item</button>
+                <button type="button" id="foundButton" class="form-btn found">Post Found Item</button>
+            </div>
+            
+            <input type="hidden" id="itemType" name="itemType" value="lost"> <!-- Default value "lost" -->
+
+            <label for="itemDescription">Item Description:</label>
+            <textarea id="itemDescription" name="itemDescription" required></textarea>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+
+            <label for="date">Date (YYYY-MM-DD):</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="contact">Contact Information:</label>
+            <input type="text" id="contact" name="contact" required>
+
+            <label for="image">Upload Item Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <button type="submit">Submit</button>
+        </form>
+        
+        <section id="itemList">
+            <h2>Posted Items</h2>
+            <ul id="items"></ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
