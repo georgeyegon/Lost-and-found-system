@@ -1,209 +1,96 @@
-/* Resetting margin, padding and box-sizing */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Base body styling */
+/* Styling for body and main container */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
     padding: 20px;
-    line-height: 1.6;
 }
-
-/* Header styling */
-header {
-    text-align: center;
-    padding: 20px;
-    background-color: #007bff;
-    color: white;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-header p {
-    font-size: 1.3em;
-    opacity: 0.9;
-}
-
-/* Main container */
-main {
+.container {
     max-width: 800px;
     margin: 0 auto;
 }
 
-/* Form styling */
-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+/* Title styling */
+h1 {
+    text-align: center;
     margin-bottom: 20px;
-    transition: box-shadow 0.3s ease;
 }
 
-form:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+/* Button styling for toggling between forms */
+.button-container {
+    text-align: center;
+    margin-bottom: 20px;
 }
-
-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #495057;
-}
-
-form input, form textarea, form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 1.1em;
-    color: #495057;
-    transition: border-color 0.3s ease;
-}
-
-form input:focus, form textarea:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-form button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #007bff;
+.button-container button {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 1.2em;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s;
 }
-
-form button[type="submit"]:hover {
+.button-container button:hover {
     background-color: #0056b3;
 }
 
-/* Styling for lost/found buttons */
-.form-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.form-btn {
-    width: 48%;
-    padding: 12px;
-    font-size: 1.2em;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.lost {
-    background-color: #dc3545;
-    color: white;
-}
-
-.found {
-    background-color: #28a745;
-    color: white;
-}
-
-.form-btn:hover {
-    opacity: 0.9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Item list styling */
-#itemList {
+/* Form container styling */
+.form-container {
     background-color: white;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-#itemList h2 {
     margin-bottom: 20px;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #007bff;
-    text-align: center;
-}
-
-/* Styling for the list of items */
-#itemList ul {
-    list-style-type: none;
-}
-
-#itemList ul li {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.3s ease;
-    position: relative;
-}
-
-#itemList ul li:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-#itemList ul li strong {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #495057;
-}
-
-#itemList ul li img {
-    margin-top: 10px;
-    max-width: 150px;
     border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.form-container input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.form-container input[type="submit"]:hover {
+    background-color: #218838;
 }
 
-/* Edit and delete buttons */
-.edit-btn, .delete-btn {
-    position: absolute;
-    right: 10px;
-    padding: 6px 12px;
+/* Lost and found items list */
+.item-list {
+    list-style: none;
+    padding: 0;
+}
+.item {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.item img {
+    max-width: 100px;
+    margin-right: 20px;
+}
+.item-description {
+    flex-grow: 1;
+}
+.item-buttons button {
+    margin: 5px;
+    padding: 8px 12px;
+    background-color: #ff4d4d;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9em;
-    font-weight: bold;
 }
-
-.edit-btn {
-    background-color: #ffc107;
-    color: white;
-    right: 80px;
-}
-
-.delete-btn {
-    background-color: #dc3545;
-    color: white;
-}
-
-/* Additional hover effects for buttons */
-.edit-btn:hover {
-    background-color: #e0a800;
-}
-
-.delete-btn:hover {
-    background-color: #c82333;
+.item-buttons button.edit {
+    background-color: #4CAF50;
 }
