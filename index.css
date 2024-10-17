@@ -1,211 +1,104 @@
-/* Styling for body and main container */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    margin: 0;
     padding: 20px;
+    background-color: lightgrey; /* Overall background color */
 }
 
 .container {
     max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Title styling */
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Search input and button styling */
-.search-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-#search-input {
-    width: 80%;
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.search-button {
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 10px;
-    transition: background-color 0.3s;
-}
-
-.search-button:hover {
-    background-color: #0056b3;
-}
-
-.search-icon {
-    width: 20px;
-    height: 20px;
-}
-
-/* Button styling for toggling between forms */
-.button-container {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.button-container button {
-    margin: 5px;
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button-container button:hover {
-    background-color: #0056b3;
-}
-
-/* Form container styling */
-.form-container {
-    background-color: #FFF;
+    margin: auto;
+    background: #fff;
     padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center text in container */
+}
+
+h1, h2, h3 {
+    color: #333;
+    text-align: center; /* Center headings */
+}
+
+.button-container {
     margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-h2 {
-    text-align: center; /* Center heading */
-}
-
-/* Center and reduce input fields */
-.form-container input,
-.form-container select {
-    width: 90%; /* Centering and reducing width */
-    padding: 10px;
-    margin: 10px auto; /* Centering */
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    display: block; /* Block display to align */
-}
-
-/* Submit button styling */
-.form-container input[type="submit"] {
-    background-color: #28a745; /* Green background */
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    width: 95%; /* Centering */
-    margin: 10px auto; /* Centering */
+    margin-right: 10px;
 }
 
-.form-container input[type="submit"]:hover {
-    background-color: #218838; /* Darker green on hover */
+button:hover {
+    background-color: #0056b3;
 }
 
-/* Lost and found items list */
-.item-list {
-    display: flex; /* Align items horizontally */
-    flex-wrap: wrap; /* Allow wrapping of items */
-    gap: 15px; /* Space between items */
+.form-container {
     margin-bottom: 20px;
+}
+
+/* Styles for Lost Item Form */
+#lost-form {
+    background-color: yellow; /* Background color for lost item form */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Styles for Found Item Form */
+#found-form {
+    background-color: blue; /* Background color for found item form */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Styles for items list */
+.items-list {
+    display: flex; /* Use flexbox for horizontal layout */
+    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    justify-content: center; /* Center items */
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.lost-items {
+    background-color: palegreen; /* Background color for lost items */
+}
+
+.found-items {
+    background-color: palevioletred; /* Background color for found items */
 }
 
 .item {
-    display: flex;
-    flex-direction: column; /* Stack image and description vertically */
-    align-items: center; /* Center items */
-    background-color: white;
-    padding: 15px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    width: calc(30% - 10px); /* Adjust width to fit three items per row */
+    width: calc(25% - 20px); /* 4 items in a row */
+    box-sizing: border-box; /* Adjust for padding and margin */
+    text-align: left; /* Align text to left */
 }
 
-/* Styling for item image */
 .item img {
-    max-width: 100px;
-    margin-bottom: 10px; /* Space between image and description */
-}
-
-/* Styling for item description */
-.item-description {
-    text-align: center; /* Center text */
-}
-
-/* Button styling for edit and delete */
-.item-buttons {
-    margin-top: 10px; /* Space above buttons */
-    display: flex;
-    justify-content: center; /* Center buttons */
-}
-
-.item-buttons button {
-    margin: 0 2px; /* Reduced margin for smaller buttons */
-    padding: 5px; /* Smaller padding for buttons */
-    font-size: 12px; /* Smaller font size for buttons */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.item-buttons button.edit {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.item-buttons button.delete {
-    background-color: #ff4d4d;
-    color: white;
-}
-
-.item-buttons button:hover {
-    opacity: 0.8; /* Slightly change opacity on hover */
-}
-
-/* Edit form styling */
-.edit-form {
-    display: none; /* Initially hidden */
-    margin-top: 10px;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.edit-form input,
-.edit-form select {
-    width: calc(100% - 12px); /* Adjust width */
+    max-width: 100%; /* Ensures images fit within the item box */
+    height: auto;
     margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
 }
 
-.edit-form button {
-    background-color: #28a745; /* Green background */
-    color: white;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.item-description {
+    overflow: hidden;
 }
 
-.edit-form button:hover {
-    background-color: #218838; /* Darker green on hover */
+.item-buttons {
+    margin-top: 10px;
 }
 
-/* Search results styling */
-#search-results {
-    border: 1px solid #ccc;
-    padding: 10px;
-    background-color: #fff;
-    border-radius: 5px;
-    margin-top: 20px;
+.edit,
+.delete {
+    margin-right: 10px;
 }
