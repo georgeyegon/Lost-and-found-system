@@ -1,4 +1,4 @@
-const baseUrl = 'https://lost-and-found-system.onrender.com'; // Base URL for json-server
+const baseUrl = 'http://localhost:3000/'; // Base URL for json-server
 
 let currentEditItem = null; // Store the item being edited
 
