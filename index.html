@@ -4,76 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lost and Found System</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Lost and Found System</h1>
+        
+        <h2>Post an Item</h2>
+        <div class="button-container">
+            <button onclick="toggleForm('lost')">Post Lost Item</button>
+            <button onclick="toggleForm('found')">Post Found Item</button>
+        </div>
 
-<div class="container">
-    <h1>Lost and Found System</h1>
+        <div id="lost-form" class="form-container" style="display: none;">
+            <h3>Lost Item Form</h3>
+            <form id="lostItemForm" onsubmit="event.preventDefault(); addItem('lost');">
+                <input type="text" id="lost-category" placeholder="Category" required>
+                <input type="text" id="lost-description" placeholder="Description" required>
+                <input type="text" id="lost-location" placeholder="Location" required>
+                <input type="date" id="lost-date" required>
+                <input type="text" id="lost-contact" placeholder="Contact" required>
+                <input type="file" id="lost-image" accept="image/*">
+                <button type="submit">Submit Lost Item</button>
+            </form>
+        </div>
 
-    <!-- Search functionality -->
-    <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search items..." onkeyup="searchItems()">
-        <button class="search-button" onclick="searchItems()">
-            <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search" class="search-icon">
-        </button>
+        <div id="found-form" class="form-container" style="display: none;">
+            <h3>Found Item Form</h3>
+            <form id="foundItemForm" onsubmit="event.preventDefault(); addItem('found');">
+                <input type="text" id="found-category" placeholder="Category" required>
+                <input type="text" id="found-description" placeholder="Description" required>
+                <input type="text" id="found-location" placeholder="Location" required>
+                <input type="date" id="found-date" required>
+                <input type="text" id="found-contact" placeholder="Contact" required>
+                <input type="file" id="found-image" accept="image/*">
+                <button type="submit">Submit Found Item</button>
+            </form>
+        </div>
+
+        <h2>View Posted Items</h2>
+        <div class="button-container">
+            <button onclick="fetchItems('lost')">View Lost Items</button>
+            <button onclick="fetchItems('found')">View Found Items</button>
+        </div>
+
+        <div id="lost-items-container" style="display: none;">
+            <h3>Here are the list of Lost Items:</h3>
+            <div id="lost-items" class="items-list"></div>
+        </div>
+
+        <div id="found-items-container" style="display: none;">
+            <h3>Here are the list of Found Items:</h3>
+            <div id="found-items" class="items-list"></div>
+        </div>
     </div>
 
-    <!-- Buttons to toggle between Lost and Found forms -->
-    <div class="button-container">
-        <button onclick="toggleForm('lost')">Lost Item</button>
-        <button onclick="toggleForm('found')">Found Item</button>
-    </div>
-
-    <!-- Lost Item Form -->
-    <div class="form-container" id="lost-form" style="display:none;">
-        <h2>Report Lost Item</h2>
-        <form id="lostItemForm" onsubmit="addItem('lost'); return false;">
-            <select id="lost-category" required>
-                <option value="">Select Category</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Accessories">Accessories</option>
-            </select>
-            <input type="text" id="lost-description" placeholder="Item Description" required>
-            <input type="text" id="lost-location" placeholder="Location Lost" required>
-            <input type="date" id="lost-date" required>
-            <input type="text" id="lost-contact" placeholder="Contact Information" required>
-            <input type="file" id="lost-image" accept="image/*" required>
-            <input type="submit" value="Submit Lost Item">
-        </form>
-    </div>
-
-    <!-- Found Item Form -->
-    <div class="form-container" id="found-form" style="display:none;">
-        <h2>Report Found Item</h2>
-        <form id="foundItemForm" onsubmit="addItem('found'); return false;">
-            <select id="found-category" required>
-                <option value="">Select Category</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Clothing">Clothing</option>
-                <option value="Accessories">Accessories</option>
-            </select>
-            <input type="text" id="found-description" placeholder="Item Description" required>
-            <input type="text" id="found-location" placeholder="Location Found" required>
-            <input type="date" id="found-date" required>
-            <input type="text" id="found-contact" placeholder="Contact Information" required>
-            <input type="file" id="found-image" accept="image/*" required>
-            <input type="submit" value="Submit Found Item">
-        </form>
-    </div>
-
-    <!-- Display Lost and Found Items -->
-    <h3>Lost Items</h3>
-    <div class="item-list" id="lost-items"></div>
-    <h3>Found Items</h3>
-    <div class="item-list" id="found-items"></div>
-
-    <!-- Search Results -->
-    <h3>Search Results</h3>
-    <div class="item-list" id="search-results"></div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
