@@ -11,6 +11,14 @@
 <div class="container">
     <h1>Lost and Found System</h1>
 
+    <!-- Search functionality -->
+    <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search items..." onkeyup="searchItems()">
+        <button class="search-button" onclick="searchItems()">
+            <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search" class="search-icon">
+        </button>
+    </div>
+
     <!-- Buttons to toggle between Lost and Found forms -->
     <div class="button-container">
         <button onclick="toggleForm('lost')">Lost Item</button>
@@ -21,6 +29,12 @@
     <div class="form-container" id="lost-form" style="display:none;">
         <h2>Report Lost Item</h2>
         <form id="lostItemForm" onsubmit="addItem('lost'); return false;">
+            <select id="lost-category" required>
+                <option value="">Select Category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Accessories">Accessories</option>
+            </select>
             <input type="text" id="lost-description" placeholder="Item Description" required>
             <input type="text" id="lost-location" placeholder="Location Lost" required>
             <input type="date" id="lost-date" required>
@@ -34,6 +48,12 @@
     <div class="form-container" id="found-form" style="display:none;">
         <h2>Report Found Item</h2>
         <form id="foundItemForm" onsubmit="addItem('found'); return false;">
+            <select id="found-category" required>
+                <option value="">Select Category</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Clothing">Clothing</option>
+                <option value="Accessories">Accessories</option>
+            </select>
             <input type="text" id="found-description" placeholder="Item Description" required>
             <input type="text" id="found-location" placeholder="Location Found" required>
             <input type="date" id="found-date" required>
@@ -44,14 +64,16 @@
     </div>
 
     <!-- Display Lost and Found Items -->
-    <ul class="item-list" id="lost-items">
-        <h3>Lost Items</h3>
-    </ul>
-    <ul class="item-list" id="found-items">
-        <h3>Found Items</h3>
-    </ul>
+    <h3>Lost Items</h3>
+    <div class="item-list" id="lost-items"></div>
+    <h3>Found Items</h3>
+    <div class="item-list" id="found-items"></div>
+
+    <!-- Search Results -->
+    <h3>Search Results</h3>
+    <div class="item-list" id="search-results"></div>
 </div>
 
-<script src="script.js"></script>
+<script src="./script.js"></script>
 </body>
 </html>

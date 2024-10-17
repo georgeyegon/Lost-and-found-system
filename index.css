@@ -4,6 +4,7 @@ body {
     background-color: #f0f0f0;
     padding: 20px;
 }
+
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -15,11 +16,46 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* Search input and button styling */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    width: 80%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search-button {
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+}
+
 /* Button styling for toggling between forms */
 .button-container {
     text-align: center;
     margin-bottom: 20px;
 }
+
 .button-container button {
     margin: 5px;
     padding: 10px 20px;
@@ -30,67 +66,154 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .button-container button:hover {
     background-color: #0056b3;
 }
 
 /* Form container styling */
 .form-container {
-    background-color: white;
+    background-color: #FFF;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-.form-container input {
-    width: 100%;
+
+
+/* Styling for Report Lost Item */
+#lost-form {
+    background-color: #ffeb3b; /* Light Yellow */
+}
+
+/* Styling for Report Found Item */
+
+
+h2 {
+    text-align: center; /* Center heading */
+}
+
+/* Center and reduce input fields */
+.form-container input,
+.form-container select {
+    width: 90%; /* Centering and reducing width */
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px auto; /* Centering */
     border-radius: 5px;
     border: 1px solid #ccc;
+    display: block; /* Block display to align */
 }
+
+/* Submit button styling */
 .form-container input[type="submit"] {
-    background-color: #28a745;
+    background-color: #28a745; /* Green background */
     color: white;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 95%; /* Centering */
+    margin: 10px auto; /* Centering */
 }
+
 .form-container input[type="submit"]:hover {
-    background-color: #218838;
+    background-color: #218838; /* Darker green on hover */
 }
 
 /* Lost and found items list */
 .item-list {
-    list-style: none;
-    padding: 0;
+    display: flex; /* Align items horizontally */
+    flex-wrap: wrap; /* Allow wrapping of items */
+    gap: 15px; /* Space between items */
+    margin-bottom: 20px;
 }
+
 .item {
+    display: flex;
+    flex-direction: column; /* Stack image and description vertically */
+    align-items: center; /* Center items */
     background-color: white;
     padding: 15px;
-    margin-bottom: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    width: calc(30% - 10px); /* Adjust width to fit three items per row */
 }
+
+/* Styling for item image */
 .item img {
     max-width: 100px;
-    margin-right: 20px;
+    margin-bottom: 10px; /* Space between image and description */
 }
+
+/* Styling for item description */
 .item-description {
-    flex-grow: 1;
+    text-align: center; /* Center text */
 }
+
+/* Button styling for edit and delete */
+.item-buttons {
+    margin-top: 10px; /* Space above buttons */
+    display: flex;
+    justify-content: center; /* Center buttons */
+}
+
 .item-buttons button {
-    margin: 5px;
-    padding: 8px 12px;
+    margin: 0 2px; /* Reduced margin for smaller buttons */
+    padding: 5px; /* Smaller padding for buttons */
+    font-size: 12px; /* Smaller font size for buttons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.item-buttons button.edit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.item-buttons button.delete {
     background-color: #ff4d4d;
     color: white;
+}
+
+.item-buttons button:hover {
+    opacity: 0.8; /* Slightly change opacity on hover */
+}
+
+/* Edit form styling */
+.edit-form {
+    display: none; /* Initially hidden */
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.edit-form input,
+.edit-form select {
+    width: calc(100% - 12px); /* Adjust width */
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.edit-form button {
+    background-color: #28a745; /* Green background */
+    color: white;
+    padding: 8px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-.item-buttons button.edit {
-    background-color: #4CAF50;
+
+.edit-form button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Search results styling */
+#search-results {
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
 }
