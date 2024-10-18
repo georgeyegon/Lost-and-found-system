@@ -12,7 +12,7 @@ body {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center text in container */
+    text-align: center;
 }
 
 h1, h2, h3 {
@@ -39,21 +39,52 @@ button:hover {
 }
 
 .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form content */
     margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
 }
 
 /* Styles for Lost Item Form */
 #lost-form {
     background-color: yellow; /* Background color for lost item form */
-    padding: 10px;
-    border-radius: 5px;
 }
 
 /* Styles for Found Item Form */
 #found-form {
     background-color: blue; /* Background color for found item form */
+}
+
+/* Centering form elements */
+form {
+    display: flex;
+    flex-direction: column; /* Vertical arrangement */
+    align-items: center; /* Center content horizontally */
+    width: 100%;
+}
+
+form input, form button {
+    width: 80%; /* Make input fields take 80% of the form width */
     padding: 10px;
+    margin: 10px 0; /* Add some space between fields */
+    border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Adjust button size within form */
+form button {
+    width: 40%; /* Make the submit button narrower */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
 }
 
 /* Styles for items list */
@@ -80,8 +111,8 @@ button:hover {
     margin: 10px;
     border-radius: 5px;
     width: calc(25% - 20px); /* 4 items in a row */
-    box-sizing: border-box; /* Adjust for padding and margin */
-    text-align: left; /* Align text to left */
+    box-sizing: border-box;
+    text-align: left;
 }
 
 .item img {
