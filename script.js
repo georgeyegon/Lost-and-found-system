@@ -6,9 +6,9 @@ let currentEditItem = null; // Store the item being edited
 function toggleForm(type) {
     document.getElementById('lost-form').style.display = type === 'lost' ? 'block' : 'none';
     document.getElementById('found-form').style.display = type === 'found' ? 'block' : 'none';
-    document.getElementById('lost-items-container').style.display = 'none';
-    document.getElementById('found-items-container').style.display = 'none';
-    currentEditItem = null;
+    document.getElementById('lost-items-container').style.display = 'none'; // Hide lost items container
+    document.getElementById('found-items-container').style.display = 'none'; // Hide found items container
+    currentEditItem = null; // Reset current edit item
 }
 
 // Function to add a lost or found item
@@ -18,68 +18,7 @@ async function addItem(type) {
     const location = document.getElementById(`${type}-location`).value;
     const date = document.getElementById(`${type}-date`).value;
     const contact = document.getElementById(`${type}-contact`).value;
-    const imageFile = document.getElementById(`${type}-image`).files[0];
-
-    if (!imageFile) {
-        console.error('No image selected');
-        return;
-    }
-
-    try {
-        if (currentEditItem) {
-            // Handle edit case
-            const reader = new FileReader();
-            reader.onloadend = async () => {
-                const updatedItem = {
-                    category,
-                    description,
-                    location,
-                    date,
-                    contact,
-                    image: reader.result
-                };
-
-                await fetch(`${baseUrl}${type}Items/${currentEditItem.id}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(updatedItem),
-                });
-                
-                currentEditItem = null;
-                document.getElementById(`${type}ItemForm`).reset();
-                toggleForm(type);
-                fetchItems(type);
-            };
-            reader.readAsDataURL(imageFile);
-        } else {
-            // Handle new item case
-            const formData = new FormData();
-            formData.append('category', category);
-            formData.append('description', description);
-            formData.append('location', location);
-            formData.append('date', date);
-            formData.append('contact', contact);
-            formData.append('image', imageFile);
-
-            const response = await fetch(`${baseUrl}${type}Items`, {
-                method: 'POST',
-                body: formData
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
-            document.getElementById(`${type}ItemForm`).reset();
-            toggleForm(type);
-            fetchItems(type);
-        }
-    } catch (error) {
-        console.error('Error adding/updating item:', error);
-    }
-}
+    const image = document.getElementById(`${type}-image`).files[0];
 
     // Convert image to base64 string
     const reader = new FileReader();
@@ -123,6 +62,7 @@ async function addItem(type) {
     if (image) {
         reader.readAsDataURL(image);
     }
+}
 
 // Function to fetch lost and found items from the server
 async function fetchItems(type) {
@@ -154,11 +94,7 @@ function displayItem(item, type) {
     div.className = 'item';
 
     const img = document.createElement('img');
-    img.src = `${baseUrl}resources/images/${item.image}`;
-    img.onerror = () => {
-        console.error('Error loading image:', img.src);
-        img.src = '/resources/images/default.jpg'; // Default image
-    };
+    img.src = item.image;
 
     const descriptionContainer = document.createElement('div');
     descriptionContainer.className = 'item-description';
