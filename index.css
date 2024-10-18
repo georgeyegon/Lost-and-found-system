@@ -17,11 +17,14 @@ body {
 
 h1, h2, h3 {
     color: #333;
-    text-align: center; /* Center headings */
+    text-align: center; /* Center all headings */
 }
 
 .button-container {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
 }
 
 button {
@@ -31,52 +34,51 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 10px;
 }
 
 button:hover {
     background-color: #0056b3;
 }
 
+/* Form container styles */
 .form-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the form content */
+    align-items: center; /* Center form content */
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 5px;
     width: 100%;
 }
 
-/* Styles for Lost Item Form */
+/* Lost and Found Form Background Colors */
 #lost-form {
-    background-color: yellow; /* Background color for lost item form */
+    background-color: yellow; /* Background for lost item form */
 }
 
-/* Styles for Found Item Form */
 #found-form {
-    background-color: blue; /* Background color for found item form */
+    background-color: blue; /* Background for found item form */
 }
 
 /* Centering form elements */
 form {
     display: flex;
     flex-direction: column; /* Vertical arrangement */
-    align-items: center; /* Center content horizontally */
+    align-items: center; /* Center the elements */
     width: 100%;
 }
 
 form input, form button {
-    width: 80%; /* Make input fields take 80% of the form width */
+    width: 80%; /* Input and button width */
     padding: 10px;
-    margin: 10px 0; /* Add some space between fields */
+    margin: 10px 0; /* Add space between form elements */
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
 /* Adjust button size within form */
 form button {
-    width: 40%; /* Make the submit button narrower */
+    width: 40%; /* Submit button is narrower */
     background-color: #28a745;
     color: white;
     border: none;
@@ -87,10 +89,10 @@ form button:hover {
     background-color: #218838;
 }
 
-/* Styles for items list */
+/* Items list */
 .items-list {
-    display: flex; /* Use flexbox for horizontal layout */
-    flex-wrap: wrap; /* Allow items to wrap onto the next line */
+    display: flex;
+    flex-wrap: wrap; /* Items will wrap */
     justify-content: center; /* Center items */
     margin-top: 20px;
     padding: 10px;
@@ -98,11 +100,11 @@ form button:hover {
 }
 
 .lost-items {
-    background-color: palegreen; /* Background color for lost items */
+    background-color: palegreen; /* Pale green for lost items list */
 }
 
 .found-items {
-    background-color: palevioletred; /* Background color for found items */
+    background-color: palevioletred; /* Pale pink for found items list */
 }
 
 .item {
@@ -110,13 +112,13 @@ form button:hover {
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
-    width: calc(25% - 20px); /* 4 items in a row */
+    width: calc(25% - 20px); /* Show 4 items per row */
     box-sizing: border-box;
     text-align: left;
 }
 
 .item img {
-    max-width: 100%; /* Ensures images fit within the item box */
+    max-width: 100%;
     height: auto;
     margin-bottom: 10px;
 }
@@ -129,7 +131,18 @@ form button:hover {
     margin-top: 10px;
 }
 
-.edit,
-.delete {
-    margin-right: 10px;
+/* Spacing between buttons for mobile screens */
+@media screen and (max-width: 600px) {
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 15px; /* Add more space between buttons */
+    }
+
+    .item {
+        width: calc(50% - 20px); /* Show 2 items per row on smaller screens */
+    }
+
+    form input, form button {
+        width: 90%; /* Make input fields and buttons wider on small screens */
+    }
 }
