@@ -90,7 +90,6 @@ async function addItem(type) {
     if (image) {
         reader.readAsDataURL(image);
     }
-}
 
 // Function to fetch lost and found items from the server
 async function fetchItems(type) {
