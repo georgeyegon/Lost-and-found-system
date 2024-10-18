@@ -1,148 +1,103 @@
 body {
+    background-color: lightgrey;
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: lightgrey; /* Overall background color */
-}
-
-.container {
-    max-width: 800px;
-    margin: auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-h1, h2, h3 {
-    color: #333;
-    text-align: center; /* Center all headings */
-}
-
-.button-container {
+h1, h2 {
+    margin-top: 20px;
     margin-bottom: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* Space between buttons */
 }
 
-button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Form container styles */
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center form content */
-    margin-bottom: 20px;
     padding: 20px;
-    border-radius: 5px;
-    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 80%;
+    margin: 20px auto;
 }
 
-/* Lost and Found Form Background Colors */
 #lost-form {
-    background-color: yellow; /* Background for lost item form */
+    background-color: yellow;
 }
 
 #found-form {
-    background-color: blue; /* Background for found item form */
+    background-color: lightblue;
 }
 
-/* Centering form elements */
-form {
-    display: flex;
-    flex-direction: column; /* Vertical arrangement */
-    align-items: center; /* Center the elements */
-    width: 100%;
-}
-
-form input, form button {
-    width: 80%; /* Input and button width */
+input[type="text"], input[type="date"], input[type="file"] {
+    display: block;
+    margin: 10px auto;
     padding: 10px;
-    margin: 10px 0; /* Add space between form elements */
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 80%;
 }
 
-/* Adjust button size within form */
-form button {
-    width: 40%; /* Submit button is narrower */
-    background-color: #28a745;
-    color: white;
-    border: none;
+button {
+    padding: 10px 20px;
+    margin: 10px;
     cursor: pointer;
 }
 
-form button:hover {
-    background-color: #218838;
-}
-
-/* Items list */
-.items-list {
-    display: flex;
-    flex-wrap: wrap; /* Items will wrap */
-    justify-content: center; /* Center items */
-    margin-top: 20px;
-    padding: 10px;
+.btn {
+    padding: 10px 20px;
+    color: white;
+    border: none;
     border-radius: 5px;
 }
 
-.lost-items {
-    background-color: palegreen; /* Pale green for lost items list */
+.btn-lost {
+    background-color: #ff5733; /* Orange */
 }
 
-.found-items {
-    background-color: palevioletred; /* Pale pink for found items list */
+.btn-found {
+    background-color: #33c3ff; /* Light Blue */
+}
+
+.btn-view-lost {
+    background-color: #28a745; /* Green */
+}
+
+.btn-view-found {
+    background-color: #ffcc00; /* Yellow */
+}
+
+.btn-edit {
+    background-color: #28a745; /* Green for edit */
+}
+
+.btn-delete {
+    background-color: #ff4136; /* Red for delete */
+}
+
+.item-list {
+    margin: 20px auto;
+    width: 80%;
 }
 
 .item {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 15px;
     margin: 10px;
-    border-radius: 5px;
-    width: calc(25% - 20px); /* Show 4 items per row */
-    box-sizing: border-box;
     text-align: left;
+    display: inline-block;
+    width: 22%;
+    vertical-align: top;
 }
 
 .item img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    margin-bottom: 10px;
 }
 
-.item-description {
-    overflow: hidden;
-}
-
-.item-buttons {
-    margin-top: 10px;
-}
-
-/* Spacing between buttons for mobile screens */
-@media screen and (max-width: 600px) {
-    .button-container {
-        flex-direction: column; /* Stack buttons vertically */
-        gap: 15px; /* Add more space between buttons */
-    }
-
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
     .item {
-        width: calc(50% - 20px); /* Show 2 items per row on smaller screens */
+        width: 45%;
     }
+}
 
-    form input, form button {
-        width: 90%; /* Make input fields and buttons wider on small screens */
+@media (max-width: 480px) {
+    .item {
+        width: 100%;
     }
 }
