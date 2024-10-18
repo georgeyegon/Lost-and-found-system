@@ -3,60 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lost and Found System</title>
-    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="index.css">
+    <title>Lost and Found</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Lost and Found System</h1>
-        
-        <h2>Post an Item</h2>
-        <div class="button-container">
-            <button onclick="toggleForm('lost')">Post Lost Item</button>
-            <button onclick="toggleForm('found')">Post Found Item</button>
-        </div>
+    <h1>Lost and Found System</h1>
+    
+    <div class="button-container">
+        <button class="btn btn-lost" onclick="toggleForm('lost')">Post Lost Item</button>
+        <button class="btn btn-found" onclick="toggleForm('found')">Post Found Item</button>
+    </div>
 
-        <div id="lost-form" class="form-container" style="display: none;">
-            <h3>Lost Item Form</h3>
-            <form id="lostItemForm" onsubmit="event.preventDefault(); addItem('lost');">
-                <input type="text" id="lost-category" placeholder="Category" required>
-                <input type="text" id="lost-description" placeholder="Description" required>
-                <input type="text" id="lost-location" placeholder="Location" required>
-                <input type="date" id="lost-date" required>
-                <input type="text" id="lost-contact" placeholder="Contact" required>
-                <input type="file" id="lost-image" accept="image/*">
-                <button type="submit">Submit Lost Item</button>
-            </form>
-        </div>
+    <div id="lost-form" class="form-container" style="display: none;">
+        <h2>Post a Lost Item</h2>
+        <form id="lost-ItemForm" onsubmit="event.preventDefault(); addItem('lost');">
+            <input type="text" id="lost-category" placeholder="Category" required>
+            <input type="text" id="lost-description" placeholder="Description" required>
+            <input type="text" id="lost-location" placeholder="Location" required>
+            <input type="date" id="lost-date" required>
+            <input type="text" id="lost-contact" placeholder="Contact" required>
+            <input type="file" id="lost-image" accept="image/*" required>
+            <button type="submit" class="btn btn-lost">Submit Lost Item</button>
+        </form>
+    </div>
 
-        <div id="found-form" class="form-container" style="display: none;">
-            <h3>Found Item Form</h3>
-            <form id="foundItemForm" onsubmit="event.preventDefault(); addItem('found');">
-                <input type="text" id="found-category" placeholder="Category" required>
-                <input type="text" id="found-description" placeholder="Description" required>
-                <input type="text" id="found-location" placeholder="Location" required>
-                <input type="date" id="found-date" required>
-                <input type="text" id="found-contact" placeholder="Contact" required>
-                <input type="file" id="found-image" accept="image/*">
-                <button type="submit">Submit Found Item</button>
-            </form>
-        </div>
+    <div id="found-form" class="form-container" style="display: none;">
+        <h2>Post a Found Item</h2>
+        <form id="found-ItemForm" onsubmit="event.preventDefault(); addItem('found');">
+            <input type="text" id="found-category" placeholder="Category" required>
+            <input type="text" id="found-description" placeholder="Description" required>
+            <input type="text" id="found-location" placeholder="Location" required>
+            <input type="date" id="found-date" required>
+            <input type="text" id="found-contact" placeholder="Contact" required>
+            <input type="file" id="found-image" accept="image/*" required>
+            <button type="submit" class="btn btn-found">Submit Found Item</button>
+        </form>
+    </div>
 
-        <h2>View Posted Items</h2>
-        <div class="button-container">
-            <button onclick="fetchItems('lost')">View Lost Items</button>
-            <button onclick="fetchItems('found')">View Found Items</button>
-        </div>
+    <div class="button-container">
+        <button class="btn-view-lost" onclick="viewItems('lost')">View Lost Items</button>
+        <button class="btn-view-found" onclick="viewItems('found')">View Found Items</button>
+    </div>
 
-        <div id="lost-items-container" style="display: none;">
-            <h3>Here are the list of Lost Items:</h3>
-            <div id="lost-items" class="items-list"></div>
-        </div>
+    <div id="lost-items" class="item-list" style="display: none;"></div>
+    <div id="found-items" class="item-list" style="display: none;"></div>
 
-        <div id="found-items-container" style="display: none;">
-            <h3>Here are the list of Found Items:</h3>
-            <div id="found-items" class="items-list"></div>
-        </div>
+    <div id="edit-item-form" class="form-container" style="display: none;">
+        <h2>Edit Item</h2>
+        <form id="edit-ItemForm" onsubmit="event.preventDefault(); updateItem();">
+            <input type="hidden" id="edit-item-id">
+            <input type="text" id="edit-category" placeholder="Category" required>
+            <input type="text" id="edit-description" placeholder="Description" required>
+            <input type="text" id="edit-location" placeholder="Location" required>
+            <input type="date" id="edit-date" required>
+            <input type="text" id="edit-contact" placeholder="Contact" required>
+            <input type="file" id="edit-image" accept="image/*">
+            <button type="submit" class="btn btn-lost">Update Item</button>
+        </form>
     </div>
 
     <script src="script.js"></script>

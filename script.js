@@ -1,17 +1,11 @@
-const baseUrl = 'http://localhost:3000/'; // Base URL for json-server
-
-let currentEditItem = null; // Store the item being edited
-
-// Function to toggle the form visibility
+const baseUrl = 'http://localhost:3000/';
+// Function to toggle between lost and found forms
 function toggleForm(type) {
     document.getElementById('lost-form').style.display = type === 'lost' ? 'block' : 'none';
     document.getElementById('found-form').style.display = type === 'found' ? 'block' : 'none';
-    document.getElementById('lost-items-container').style.display = 'none'; // Hide lost items container
-    document.getElementById('found-items-container').style.display = 'none'; // Hide found items container
-    currentEditItem = null; // Reset current edit item
 }
 
-// Function to add a lost or found item
+// Function to add or edit a lost or found item
 async function addItem(type) {
     const category = document.getElementById(`${type}-category`).value;
     const description = document.getElementById(`${type}-description`).value;
@@ -20,7 +14,11 @@ async function addItem(type) {
     const contact = document.getElementById(`${type}-contact`).value;
     const image = document.getElementById(`${type}-image`).files[0];
 
-    // Convert image to base64 string
+    if (!category || !description || !location || !date || !contact || !image) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
     const reader = new FileReader();
     reader.onloadend = async () => {
         const newItem = {
@@ -29,34 +27,27 @@ async function addItem(type) {
             location,
             date,
             contact,
-            image: reader.result // Base64 string of image
+            image: reader.result
         };
 
-        // If editing an item, update it; otherwise, add a new item
-        if (currentEditItem) {
-            await fetch(`${baseUrl}${type}Items/${currentEditItem.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newItem),
-            });
-            currentEditItem = null; // Reset edit item
-        } else {
-            // Send POST request to add the item
-            await fetch(`${baseUrl}${type}Items`, {
+        try {
+            const response = await fetch(`${baseUrl}${type}Items`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newItem),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newItem)
             });
-        }
 
-        // Clear the form
-        document.getElementById(`${type}ItemForm`).reset();
-        toggleForm(type); // Hide the form after submission
-        fetchItems(type); // Refresh item list
+            if (response.ok) {
+                alert('Item posted successfully!');
+                document.getElementById(`${type}-ItemForm`).reset();
+            } else {
+                alert('Error posting item: ' + response.statusText);
+            }
+            viewItems(type); // Refresh the item list
+        } catch (error) {
+            console.error('Error posting item:', error);
+            alert('Error posting item: ' + error.message);
+        }
     };
 
     if (image) {
@@ -64,64 +55,54 @@ async function addItem(type) {
     }
 }
 
-// Function to fetch lost and found items from the server
-async function fetchItems(type) {
-    let items = [];
+// Function to view lost or found items
+async function viewItems(type) {
+    const response = await fetch(`${baseUrl}${type}Items`);
+    const items = await response.json();
 
-    if (type === 'lost') {
-        const lostResponse = await fetch(baseUrl + 'lostItems');
-        items = await lostResponse.json();
-        document.getElementById('lost-items-container').style.display = 'block'; // Show lost items container
-        document.getElementById('found-items-container').style.display = 'none'; // Hide found items container
-    } else if (type === 'found') {
-        const foundResponse = await fetch(baseUrl + 'foundItems');
-        items = await foundResponse.json();
-        document.getElementById('found-items-container').style.display = 'block'; // Show found items container
-        document.getElementById('lost-items-container').style.display = 'none'; // Hide lost items container
-    }
+    const itemList = document.getElementById(`${type}-items`);
+    itemList.innerHTML = ''; // Clear previous items
+    document.getElementById(`${type}-items`).style.display = 'block'; // Show items list
 
-    const itemsList = document.getElementById(type === 'lost' ? 'lost-items' : 'found-items');
-    itemsList.innerHTML = ''; // Clear previous items
-
-    items.forEach(item => displayItem(item, type)); // Display each item
+    items.forEach(item => addItemToDisplay(item, type));
 }
 
 // Function to display an item
-function displayItem(item, type) {
-    const itemList = document.getElementById(type === 'lost' ? 'lost-items' : 'found-items');
+function addItemToDisplay(item, type) {
+    const itemList = document.getElementById(`${type}-items`);
 
     const div = document.createElement('div');
     div.className = 'item';
 
     const img = document.createElement('img');
-    img.src = item.image;
+    img.src = item.image; // Use the image URL from the server
+    img.alt = 'Item Image';
 
     const descriptionContainer = document.createElement('div');
     descriptionContainer.className = 'item-description';
     descriptionContainer.innerHTML = `<strong>Category:</strong> ${item.category}<br>
-                                       <strong>Description:</strong> ${item.description}<br>
-                                       <strong>Location:</strong> ${item.location}<br>
-                                       <strong>Date:</strong> ${item.date}<br>
-                                       <strong>Contact:</strong> ${item.contact}`;
+                                      <strong>Description:</strong> ${item.description}<br>
+                                      <strong>Location:</strong> ${item.location}<br>
+                                      <strong>Date:</strong> ${item.date}<br>
+                                      <strong>Contact:</strong> ${item.contact}`;
 
-    div.appendChild(img);
-    div.appendChild(descriptionContainer);
-
-    // Append edit and delete buttons
     const itemButtons = document.createElement('div');
     itemButtons.className = 'item-buttons';
-    
+
     const editButton = document.createElement('button');
     editButton.innerText = 'Edit';
-    editButton.onclick = () => openEditForm(item, type);
+    editButton.className = 'edit-btn';
+    editButton.onclick = () => openEditForm(item);
+    itemButtons.appendChild(editButton);
 
     const deleteButton = document.createElement('button');
     deleteButton.innerText = 'Delete';
+    deleteButton.className = 'delete-btn';
     deleteButton.onclick = () => deleteItem(item.id, type);
-
-    itemButtons.appendChild(editButton);
     itemButtons.appendChild(deleteButton);
 
+    div.appendChild(img);
+    div.appendChild(descriptionContainer);
     div.appendChild(itemButtons);
     itemList.appendChild(div);
 }
@@ -131,26 +112,52 @@ async function deleteItem(id, type) {
     await fetch(`${baseUrl}${type}Items/${id}`, {
         method: 'DELETE',
     });
-
-    fetchItems(type); // Refresh the item display
+    viewItems(type); // Refresh the item display
 }
 
 // Function to open the edit form
-function openEditForm(item, type) {
-    currentEditItem = item; // Set the item to be edited
+function openEditForm(item) {
+    document.getElementById('edit-item-id').value = item.id;
+    document.getElementById('edit-category').value = item.category;
+    document.getElementById('edit-description').value = item.description;
+    document.getElementById('edit-location').value = item.location;
+    document.getElementById('edit-date').value = item.date;
+    document.getElementById('edit-contact').value = item.contact;
+    document.getElementById('edit-item-form').style.display = 'block';
+}
 
-    // Fill the form with existing item data
-    document.getElementById(`${type}-category`).value = item.category;
-    document.getElementById(`${type}-description`).value = item.description;
-    document.getElementById(`${type}-location`).value = item.location;
-    document.getElementById(`${type}-date`).value = item.date;
-    document.getElementById(`${type}-contact`).value = item.contact;
+// Function to update an item
+async function updateItem() {
+    const id = document.getElementById('edit-item-id').value;
+    const category = document.getElementById('edit-category').value;
+    const description = document.getElementById('edit-description').value;
+    const location = document.getElementById('edit-location').value;
+    const date = document.getElementById('edit-date').value;
+    const contact = document.getElementById('edit-contact').value;
 
-    // Show the corresponding form
-    toggleForm(type);
+    const updatedItem = {
+        category,
+        description,
+        location,
+        date,
+        contact
+    };
+
+    await fetch(`${baseUrl}lostItems/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedItem),
+    });
+
+    document.getElementById('edit-item-form').style.display = 'none';
+    viewItems('lost'); // Refresh the item display
+    viewItems('found'); // Refresh the item display
 }
 
 // Call fetchItems when the page loads
 window.onload = () => {
-    fetchItems('lost'); // Default to view lost items on load
+    viewItems('lost');
+    viewItems('found');
 };
