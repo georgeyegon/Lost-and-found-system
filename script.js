@@ -18,7 +18,35 @@ async function addItem(type) {
     const location = document.getElementById(`${type}-location`).value;
     const date = document.getElementById(`${type}-date`).value;
     const contact = document.getElementById(`${type}-contact`).value;
-    const image = document.getElementById(`${type}-image`).files[0];
+    const imageFile = document.getElementById(`${type}-image`).files[0];
+
+    const fileName = `${Date.now()}-${imageFile.name}`;
+
+    const formData = new FormData();
+    formData.append('category', category);
+    formData.append('description', description);
+    formData.append('location', location);
+    formData.append('date', date);
+    formData.append('contact', contact);
+    formData.append('image', imageFile, fileName);
+
+    try {
+        const response = await fetch(`${baseUrl}${type}Items`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        document.getElementById(`${type}ItemForm`).reset();
+        toggleForm(type);
+        fetchItems(type);
+    } catch (error) {
+        console.error('Error adding item:', error);
+    }
+}
 
     // Convert image to base64 string
     const reader = new FileReader();
@@ -94,7 +122,11 @@ function displayItem(item, type) {
     div.className = 'item';
 
     const img = document.createElement('img');
-    img.src = item.image;
+    img.src = `${baseUrl}resources/images/${item.image}`;
+    img.onerror = () => {
+        console.error('Error loading image:', img.src);
+        img.src = '/resources/images/default.jpg'; // Default image
+    };
 
     const descriptionContainer = document.createElement('div');
     descriptionContainer.className = 'item-description';
