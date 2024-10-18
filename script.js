@@ -1,4 +1,4 @@
-const baseUrl = 'https://lost-and-found-system.onrender.com/';
+const baseUrl = 'https://lost-and-found-system.onrender.com';
 
 function toggleForm(type) {
     document.getElementById('lost-form').style.display = type === 'lost' ? 'block' : 'none';
