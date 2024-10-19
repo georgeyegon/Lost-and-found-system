@@ -1,0 +1,85 @@
+{
+    "posts": [
+      {
+        "id": "1",
+        "title": "Tecno Camon 30",
+        "image": "https://www.phoneplacekenya.com/wp-content/uploads/2024/02/Tecno-Camon-30-Premier-5G.jpg",
+        "description": "RAM: 12GB\nInternal Memory: 512GB\nDisplay: 6.67-inches, AMOLED, 120 Hz\nProcessor: MediaTek 8200 Ultimate\nOS: Android 14 with HiOS 14\nMain Camera: 50MP + 50MP + 50MP\nSelfie Camera: 50MP\nConnectivity: 5G\nBattery: 5,000mAh, 70W",
+        "views": 200
+      },
+      {
+        "id": "2",
+        "title": "Google Pixel 8 Pro",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYXANkWNWjuYWyZVGOZN4feelM27cbSjylFpKwmI8a6bQl05ItMlcI&usqp=CAE&s",
+        "description": "The Google Pixel 8 features a new Tensor G3 processor, the first Actua display on a Pixel, dual rear cameras, and Android 14 with seven years of software updates. At that price, the Pixel 8 is not only difficult to ignore, but perhaps the only phone you should be thinking of if you're shopping on a budget.",
+        "views": 0
+      },
+      {
+        "id": "3",
+        "title": "Samsung Galaxy Z Series",
+        "image": "data:image/jpeg;base64,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",
+        "description": "                  RAM: 12 GB\nInternal Storage: 256GB, 512GB\nBattery: 4,400 mAh\nRear Camera: 50MP + 12MP+ 10MP\nInner Camera: 4MP\nOuter Camera: 10MP\nDisplay: 7.6 inch, AMOLED, 120Hz\nCover display: 6.2 inch, AMOLED, 120Hz\nProcessor: Qualcomm Snapdragon 8 Gen 2\nConnectivity: Dual sim, 3G, 4G, 5G, VoLTE, Wi-Fi\nColors: Phantom Black, Cream, Icy Blue\nOS: Android 13, One UI 5.1.1\n                  ",
+        "views": 0
+      },
+      {
+        "id": "4",
+        "title": "iPhone 15.",
+        "image": "https://cdn.pixabay.com/photo/2022/05/04/07/38/iphone-13-pro-max-7173413_1280.jpg",
+        "description": "                  RAM: 6GB\nStorage: 128GB,256GB\nBattery: 3,200 mAh\nCamera: 48MP + 12 MP\nSelfie: 12MP + SL 3D\nDisplay: 6.1 inches\nProcessor: Apple A16 Bionic\nConnectivity: 5G, Nano-SIM, eSIM, Wi-Fi 6\nColors:   Black, Blue, Green, Yellow, Pink\nOS: iOS 17\n                  ",
+        "views": 0
+      },
+      {
+        "id": "5",
+        "title": "Nokia 5.4",
+        "image": "https://images.ctfassets.net/wcfotm6rrl7u/4IKzGpcmpOCvUyEN5QMi60/a853b5a476db0320b693fd2daf3d294c/nokia_5_4-DTC-display.png?w=881&h=615&fm=avif&q=88",
+        "description": "                  Make a lasting impression with Nokia 5.4. The 48MP Quad camera gives you total creative control – with advanced video recording and cinematic effects, you can capture your world in stunning detail. Do more of what you love thanks to 2-day battery life1 and the streamlined Qualcomm® Snapdragon™ 662 – performance you can rely on. Stay on top of everything with a phone that’s ready for Android 11 and beyond, so you can work and play, your way.\n                  ",
+        "views": 0
+      },
+      {
+        "id": "6",
+        "title": "Tecno Camon 30",
+        "image": "https://d3fyizz0b46qgr.cloudfront.net/global/phones/camon/30pro5g/20231032.png",
+        "description": "Here's what you need to know about the Tecno Camon 30 before making your pre-order. Here's what you need to know about the Tecno Camon 30 before making your pre-order. Here's what you need to know about the Tecno Camon 30 before making your pre-order.",
+        "views": 200
+      },
+      {
+        "id": "8",
+        "title": "Samsung Galaxy Z Series",
+        "image": "data:image/jpeg;base64,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",
+        "description": "                  RAM: 12 GB\nInternal Storage: 256GB, 512GB\nBattery: 4,400 mAh\nRear Camera: 50MP + 12MP+ 10MP\nInner Camera: 4MP\nOuter Camera: 10MP\nDisplay: 7.6 inch, AMOLED, 120Hz\nCover display: 6.2 inch, AMOLED, 120Hz\nProcessor: Qualcomm Snapdragon 8 Gen 2\nConnectivity: Dual sim, 3G, 4G, 5G, VoLTE, Wi-Fi\nColors: Phantom Black, Cream, Icy Blue\nOS: Android 13, One UI 5.1.1\n                  ",
+        "views": 0
+      },
+      {
+        "id": "9",
+        "title": "iPhone 15 Pro Max",
+        "image": "data:image/jpeg;base64,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",
+        "description": "RAM:  8GB\nStorage: 128GB, 256GB, 512GB,1TB\nBattery: 4323 mAh\nCamera: 48MP + 12MP + 12MP + TOF 3D LiDAR\nSelfie: 12MP+ SL 3D\nDisplay: 6.1 inches, OLED, 120Hz\nProcessor: Apple A17 Pro\nConnectivity: 5G, Nano-SIM, eSIM, Wi-Fi\nColors: Black Titanium, White Titanium, Blue Titanium, Natural Titanium\nOS: iOS 17",
+        "views": 0
+      },
+      {
+        "id": "10",
+        "title": "OPPO Reno11 Pro 5G",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDwu7mxFCCMmNv3I5qDiSrZerqMRYvVoRo6N2rcd5kzpzj1uG4tUIs&usqp=CAE&s",
+        "description": "RAM: 12GB\nStorage:  512GB\nOS: Android 14, ColorOS 14\nCamera: 50MP + 32MP + 8MP\nSelfie: 32MP\nDisplay: 6.74 inch, AMOLED,120Hz\nProcessor: Qualcomm SM8475 Snapdragon 8+ Gen 1 (4 nm)\nConnectivity: Dual SIM, 3G, 4G, 5G\nColors: Black, Green, Silver\nBattery: 4,700 mAh, 67W",
+        "views": 0
+      },
+      {
+        "id": "11",
+        "title": "Redmi Note 13 4G",
+        "image": "https://gadgetsleo.com/storage/2023/07/Redmi-Note-13-1.jpg",
+        "description": "                                                      The Redmi Note 13 is now available in Kenya for KSh24,000. The key features of this phone include a huge 6.67-inch AMOLED display with 120Hz refresh rate, a powerful Qualcomm SM6225 Snapdragon 685 (6 nm) chipset, a triple camera system on the rear with 108MP main sensor, and massive Li-Po 5000 mAh battery with 33W fast charging technology. This is the 6GB RAM/128GB storage variant and it is available in Graphite black (Stealth Black), Arctic White, Ocean Teal,  and Prism Gold color options.\n                  \n                  \n                  ",
+        "views": 0
+      },
+      {
+        "id": "12",
+        "title": "Infinix Note 40 Pro",
+        "image": "data:image/jpeg;base64,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",
+        "description": "RAM: 8GB, 12GB\nInternal Memory: 256 GB\nDimensions: 164.4 x 74.6 x 7.8 mm\nDisplay: 6.78 inches\nNetwork: 4G\nOS: Android 14, XOS 14\nChipset: Mediatek Helio G99 Ultimate\nMain Camera: 108MP + 2MP + 2MP\nSelfie Camera: 32MP\nBattery: 5,000mAh, 45W\nColors: Vintage Green, Titan Gold",
+        "views": 0
+      }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+  }
