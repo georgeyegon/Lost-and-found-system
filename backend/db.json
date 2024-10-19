@@ -91,6 +91,15 @@
       "date": "2024-10-15",
       "contact": "07123456789",
       "image": "resources/Images/download.webp"
+    },
+    {
+      "id": "6",
+      "category": "Electronics",
+      "description": "Wireless earbuds",
+      "location": "Central Park",
+      "date": "2024-10-15",
+      "contact": "07123456789",
+      "image": "resources/Images/download.webp"
     }
   ]
 }
