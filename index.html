@@ -41,26 +41,12 @@
     </div>
 
     <div class="button-container">
-        <button class="btn-view-lost" onclick="viewItems('lost')">View Lost Items</button>
-        <button class="btn-view-found" onclick="viewItems('found')">View Found Items</button>
+        <button class="btn-view-lost" onclick="fetchItems('lost')">View Lost Items</button>
+        <button class="btn-view-found" onclick="fetchItems('found')">View Found Items</button>
     </div>
 
-    <div id="lost-items" class="item-list" style="display: none;"></div>
-    <div id="found-items" class="item-list" style="display: none;"></div>
-
-    <div id="edit-item-form" class="form-container" style="display: none;">
-        <h2>Edit Item</h2>
-        <form onsubmit="event.preventDefault(); updateItem();">
-            <input type="hidden" id="edit-item-id">
-            <input type="text" id="edit-category" placeholder="Category" required>
-            <input type="text" id="edit-description" placeholder="Description" required>
-            <input type="text" id="edit-location" placeholder="Location" required>
-            <input type="date" id="edit-date" required>
-            <input type="text" id="edit-contact" placeholder="Contact" required>
-            <input type="file" id="edit-image" accept="image/*">
-            <button type="submit" class="btn btn-edit">Update Item</button>
-        </form>
-    </div>
+    <div id="lost-items" class="item-list"></div>
+    <div id="found-items" class="item-list"></div>
 
     <script src="script.js"></script>
 </body>

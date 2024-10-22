@@ -65,10 +65,6 @@ button {
     background-color: #28a745; /* Green for edit */
 }
 
-.btn-delete {
-    background-color: #ff4136; /* Red for delete */
-}
-
 .item-list {
     margin: 20px auto;
     width: 80%;
