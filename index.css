@@ -62,38 +62,4 @@ button {
 }
 
 .btn-edit {
-    background-color: #28a745; /* Green for edit */
-}
-
-.item-list {
-    margin: 20px auto;
-    width: 80%;
-}
-
-.item {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin: 10px;
-    text-align: left;
-    display: inline-block;
-    width: 22%;
-    vertical-align: top;
-}
-
-.item img {
-    width: 100%;
-    height: auto;
-}
-
-/* Mobile View Adjustments */
-@media (max-width: 768px) {
-    .item {
-        width: 45%;
-    }
-}
-
-@media (max-width: 480px) {
-    .item {
-        width: 100%;
-    }
-}
+    background-color: #28

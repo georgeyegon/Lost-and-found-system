@@ -1,100 +1,53 @@
-const baseUrl = 'http://localhost:3000/'; // Base URL for json-server
-
-let currentEditItem = null; // Store the item being edited
-
 // Function to toggle the form visibility
 function toggleForm(type) {
-    document.getElementById('lost-form').style.display = type === 'lost' ? 'block' : 'none';
-    document.getElementById('found-form').style.display = type === 'found' ? 'block' : 'none';
-    document.getElementById('lost-items-container').style.display = 'none'; // Hide lost items container
-    document.getElementById('found-items-container').style.display = 'none'; // Hide found items container
-    currentEditItem = null; // Reset current edit item
-}
-
-// Function to add a lost or found item
-async function addItem(type) {
-    const category = document.getElementById(`${type}-category`).value;
-    const description = document.getElementById(`${type}-description`).value;
-    const location = document.getElementById(`${type}-location`).value;
-    const date = document.getElementById(`${type}-date`).value;
-    const contact = document.getElementById(`${type}-contact`).value;
-    const image = document.getElementById(`${type}-image`).files[0];
-
-    // Convert image to base64 string
-    const reader = new FileReader();
-    reader.onloadend = async () => {
-        const newItem = {
-            category,
-            description,
-            location,
-            date,
-            contact,
-            image: reader.result // Base64 string of image
-        };
-
-        // If editing an item, update it; otherwise, add a new item
-        if (currentEditItem) {
-            await fetch(`${baseUrl}${type}Items/${currentEditItem.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newItem),
-            });
-            currentEditItem = null; // Reset edit item
-        } else {
-            // Send POST request to add the item
-            await fetch(`${baseUrl}${type}Items`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(newItem),
-            });
-        }
-
-        // Clear the form
-        document.getElementById(`${type}ItemForm`).reset();
-        toggleForm(type); // Hide the form after submission
-        fetchItems(type); // Refresh item list
-    };
-
-    if (image) {
-        reader.readAsDataURL(image);
-    }
-}
-
-// Function to fetch lost and found items from the server
-async function fetchItems(type) {
-    let items = [];
-
     if (type === 'lost') {
-        const lostResponse = await fetch(baseUrl + 'lostItems');
-        items = await lostResponse.json();
-        document.getElementById('lost-items-container').style.display = 'block'; // Show lost items container
-        document.getElementById('found-items-container').style.display = 'none'; // Hide found items container
+        document.getElementById('lost-form').style.display = 'block';
+        document.getElementById('found-form').style.display = 'none';
     } else if (type === 'found') {
-        const foundResponse = await fetch(baseUrl + 'foundItems');
-        items = await foundResponse.json();
-        document.getElementById('found-items-container').style.display = 'block'; // Show found items container
-        document.getElementById('lost-items-container').style.display = 'none'; // Hide lost items container
+        document.getElementById('lost-form').style.display = 'none';
+        document.getElementById('found-form').style.display = 'block';
     }
+}
 
-    const itemsList = document.getElementById(type === 'lost' ? 'lost-items' : 'found-items');
-    itemsList.innerHTML = ''; // Clear previous items
+// Function to hide both forms
+function closeForms() {
+    document.getElementById('lost-form').style.display = 'none';
+    document.getElementById('found-form').style.display = 'none';
+}
+
+// Function to display items from local storage
+function displayItems(type) {
+    const items = JSON.parse(localStorage.getItem(`${type}Items`)) || [];
+    const itemsList = document.getElementById(`${type}-items`);
+    const otherType = type === 'lost' ? 'found' : 'lost';
+
+    // Hide the other category's items and clear its content
+    document.getElementById(`${otherType}-items`).innerHTML = '';
+
+    // Clear previous items
+    itemsList.innerHTML = '';
+
+    // Add a heading above the items inside the buttons
+    const heading = document.createElement('h2');
+    heading.textContent = `Here are ${type} items`;
+    heading.classList.add('items-heading');
+
+    // Insert the heading above the items list
+    itemsList.appendChild(heading);
 
     items.forEach(item => displayItem(item, type)); // Display each item
 }
 
-// Function to display an item
+// Function to display an individual item
 function displayItem(item, type) {
-    const itemList = document.getElementById(type === 'lost' ? 'lost-items' : 'found-items');
+    const itemList = document.getElementById(`${type}-items`);
 
     const div = document.createElement('div');
     div.className = 'item';
 
     const img = document.createElement('img');
     img.src = item.image;
+    img.alt = `${item.category} image`;
 
     const descriptionContainer = document.createElement('div');
     descriptionContainer.className = 'item-description';
@@ -104,53 +57,107 @@ function displayItem(item, type) {
                                        <strong>Date:</strong> ${item.date}<br>
                                        <strong>Contact:</strong> ${item.contact}`;
 
-    div.appendChild(img);
-    div.appendChild(descriptionContainer);
-
-    // Append edit and delete buttons
-    const itemButtons = document.createElement('div');
-    itemButtons.className = 'item-buttons';
-    
     const editButton = document.createElement('button');
-    editButton.innerText = 'Edit';
-    editButton.onclick = () => openEditForm(item, type);
+    editButton.className = 'btn-edit';
+    editButton.textContent = 'Edit';
+    editButton.onclick = () => populateForm(item, type); // Populate the form for editing
 
     const deleteButton = document.createElement('button');
-    deleteButton.innerText = 'Delete';
-    deleteButton.onclick = () => deleteItem(item.id, type);
+    deleteButton.className = 'btn-delete';
+    deleteButton.textContent = 'Delete';
+    deleteButton.onclick = () => deleteItem(item.id, type); // Delete item on button click
 
-    itemButtons.appendChild(editButton);
-    itemButtons.appendChild(deleteButton);
+    div.appendChild(img);
+    div.appendChild(descriptionContainer);
+    div.appendChild(editButton);
+    div.appendChild(deleteButton);
 
-    div.appendChild(itemButtons);
     itemList.appendChild(div);
 }
 
-// Function to delete an item
-async function deleteItem(id, type) {
-    await fetch(`${baseUrl}${type}Items/${id}`, {
-        method: 'DELETE',
-    });
-
-    fetchItems(type); // Refresh the item display
-}
-
-// Function to open the edit form
-function openEditForm(item, type) {
-    currentEditItem = item; // Set the item to be edited
-
-    // Fill the form with existing item data
+// Function to populate the form with an item's details for editing
+function populateForm(item, type) {
     document.getElementById(`${type}-category`).value = item.category;
     document.getElementById(`${type}-description`).value = item.description;
     document.getElementById(`${type}-location`).value = item.location;
     document.getElementById(`${type}-date`).value = item.date;
     document.getElementById(`${type}-contact`).value = item.contact;
 
-    // Show the corresponding form
-    toggleForm(type);
+    toggleForm(type); // Show the relevant form
+
+    const submitButton = document.querySelector(`#${type}-item-form button[type="submit"]`);
+    submitButton.textContent = 'Update Item'; // Change button text to "Update Item"
+    submitButton.onclick = () => addItem(type, item.id); // Call addItem with item ID to update the item
 }
 
-// Call fetchItems when the page loads
+// Function to add or update an item
+function addItem(type, itemId = null) {
+    const category = document.getElementById(`${type}-category`).value;
+    const description = document.getElementById(`${type}-description`).value;
+    const location = document.getElementById(`${type}-location`).value;
+    const date = document.getElementById(`${type}-date`).value;
+    const contact = document.getElementById(`${type}-contact`).value;
+    const imageFile = document.getElementById(`${type}-image`).files[0];
+
+    if (!category || !description || !location || !date || !contact || !imageFile) {
+        alert("Please fill all fields before submitting.");
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+        const newItem = {
+            id: itemId || Date.now(), // Use existing ID or create a new one
+            category,
+            description,
+            location,
+            date,
+            contact,
+            image: reader.result // Base64 string of the image
+        };
+
+        const items = JSON.parse(localStorage.getItem(`${type}Items`)) || [];
+
+        if (itemId) {
+            // Update existing item
+            const itemIndex = items.findIndex(item => item.id === itemId);
+            items[itemIndex] = newItem;
+        } else {
+            // Add new item
+            items.push(newItem);
+        }
+
+        localStorage.setItem(`${type}Items`, JSON.stringify(items));
+
+        alert(`${type.charAt(0).toUpperCase() + type.slice(1)} item ${itemId ? 'updated' : 'posted'} successfully!`);
+        document.getElementById(`${type}-item-form`).reset(); // Clear the form
+        closeForms(); // Close the form after posting or updating
+        displayItems(type); // Refresh the item list immediately
+    };
+
+    reader.readAsDataURL(imageFile); // Convert the image to base64 before storing
+}
+
+// Function to delete an item
+function deleteItem(itemId, type) {
+    if (confirm("Are you sure you want to delete this item?")) {
+        let items = JSON.parse(localStorage.getItem(`${type}Items`)) || [];
+        items = items.filter(item => item.id !== itemId);
+        localStorage.setItem(`${type}Items`, JSON.stringify(items));
+        displayItems(type); // Refresh the item list after deletion
+    }
+}
+
+// Event listeners for displaying lost and found items
+document.querySelector('.btn-view-lost').addEventListener('click', () => {
+    displayItems('lost'); // Show lost items
+});
+
+document.querySelector('.btn-view-found').addEventListener('click', () => {
+    displayItems('found'); // Show found items
+});
+
+// Call displayItems when the page loads to show any existing lost items
 window.onload = () => {
-    fetchItems('lost'); // Default to view lost items on load
+    displayItems('lost'); // Display lost items by default on page load
 };
